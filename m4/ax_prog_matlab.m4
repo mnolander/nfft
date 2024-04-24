@@ -104,6 +104,7 @@ AC_DEFUN([AX_PROG_MATLAB],
         mac) matlab_mexext="mexmac";;
         maci) matlab_mexext="mexmaci";;
         maci64) matlab_mexext="mexmaci64";;
+	maca64) matlab_mexext="mexmaca64";;
         sol64) matlab_mexext="mexs64";;
         win32) matlab_mexext="mexw32";;
         win64) matlab_mexext="mexw64";;
@@ -171,6 +172,7 @@ AC_DEFUN([AX_PROG_MATLAB],
           mexmac) matlab_arch="mac";;
           mexmaci) matlab_arch="maci";;
           mexmaci64) matlab_arch="maci64";;
+	  mexmaca64) matlab_arch="maca64";;
           mexs64) matlab_arch="sol64";;
           mexw32) matlab_arch="win32";;
           mexw64) matlab_arch="win64";;
@@ -185,6 +187,7 @@ AC_DEFUN([AX_PROG_MATLAB],
           mac) matlab_mexext="mexmac";;
           maci) matlab_mexext="mexmaci";;
           maci64) matlab_mexext="mexmaci64";;
+	  maca64) matlab_mexext="mexmaca64";;
           sol64) matlab_mexext="mexs64";;
           win32) matlab_mexext="mexw32";;
           win64) matlab_mexext="mexw64";;
@@ -205,7 +208,7 @@ AC_DEFUN([AX_PROG_MATLAB],
     # dynamic library extension for architecture
     case $matlab_arch in
       glnx86|glnxa64|sol|sol64) matlab_libext=".so";;
-      mac|mac64|maci|maci64) matlab_libext=".dylib";;
+      mac|mac64|maci|maci64|maca64) matlab_libext=".dylib";;
       win32|win64) matlab_libext=".dll";;
       *) AC_MSG_ERROR([Unsupported or invalid architecture ${matlab_arch}.]);;
     esac
