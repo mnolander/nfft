@@ -134,8 +134,12 @@ static kernel get_kernel(const mxArray *p)
     ker = log_sin;
   else if (strcmp(s, "laplacian_rbf") == 0)
     ker = laplacian_rbf;
+  else if (strcmp(s, "der_laplacian_rbf") == 0)
+    ker = der_laplacian_rbf;
   else if (strcmp(s, "xx_gaussian") == 0)
     ker = xx_gaussian;
+  else if (strcmp(s, "absx") == 0)
+    ker = absx;
   else
     mexErrMsgTxt("fastsum: Unknown kernel function.");
   return ker;

@@ -431,6 +431,22 @@ C laplacian_rbf(R x, int der, const R *param)    /* K(x)=EXP(-|x|/c) */
   return value;
 }
 
+C der_laplacian_rbf(R x, int der, const R *param)    /* K(x)=|x|/c EXP(-|x|/c) */
+{
+  R c = param[0];
+  R value = K(0.0);
+
+  switch (der)
+  {
+    case  0 : value = (FABS(x)/c)*EXP(-FABS(x)/c); break;
+    default:
+        value = (POW(K(-1.0),(R)der))*((FABS(x)-(R)der*c)/POW(c,(R)der+1))*EXP(-FABS(x)/c);
+        value *= 1 - 2 * ((x < K(0.0)) && (der % 2));
+  }
+
+  return value;
+}
+
 C xx_gaussian(R x, int der, const R *param)    /* K(x)=x^2/c^2 EXP(-x^2/c^2) */
 {
   R c = param[0];
@@ -455,6 +471,22 @@ C xx_gaussian(R x, int der, const R *param)    /* K(x)=x^2/c^2 EXP(-x^2/c^2) */
   }
 
   return value / (c*c);
+}
+
+C absx(R x, int der, const R *param)    /* K(x)=|x| */
+{
+  R value=K(0.0);
+
+  (void)param;
+  
+  if (der == 0) value=FABS(x);
+  else if (der == 1){
+    if (x<0) value=K(-1.0);
+    else value=K(1.0);
+  }
+  else value=K(0.0);
+  
+  return value;
 }
 
 /* \} */
